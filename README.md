@@ -209,18 +209,18 @@ mypy src/
 - [x] Minimal scoring API with OpenAI/Anthropic
 - [x] CLI tool for local scoring
 
-### Phase 2 - Community & Repository (Q2 2024)
+### Phase 2 - Community & Repository (Q2 2025)
 - [ ] Open Rubric Hub (Git repo with curated rubrics)
 - [ ] Templates for common domains (code, dialogue, writing)
 - [ ] Contribution guidelines and review process
 
-### Phase 3 - Integrations & Scaling (Q3 2024)  
+### Phase 3 - Integrations & Scaling (Q3 2025)  
 - [ ] RLlib / TRL integration examples
 - [ ] Hybrid reward module (LLM + automated metrics)
 - [ ] Bias/drift detection module
 - [ ] Local model support via vLLM
 
-### Phase 4 - Sustainability (Q4 2024)
+### Phase 4 - Sustainability (Q4 2025)
 - [ ] Hosted API service (optional paid tier)
 - [ ] Enterprise features and support
 - [ ] Dataset hosting for scoring logs
