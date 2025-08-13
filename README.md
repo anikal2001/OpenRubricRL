@@ -127,7 +127,7 @@ curl -X POST "http://localhost:8000/score/my_rubric" \
 
 ### Supported LLM Providers
 
-- ✅ OpenAI (GPT-4, GPT-3.5)
+- ✅ OpenAI (GPT-5, GPT-o3)
 - ✅ Anthropic (Claude)
 - 🔄 Local models via vLLM (coming soon)
 
