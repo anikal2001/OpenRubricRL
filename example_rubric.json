@@ -1,0 +1,70 @@
+{
+  "name": "code_quality_basic",
+  "version": "1.0.0",
+  "description": "Basic code quality evaluation rubric for Python functions",
+  "domain": "code",
+  "scale": {
+    "min": 0.0,
+    "max": 10.0,
+    "type": "continuous"
+  },
+  "criteria": [
+    {
+      "name": "correctness",
+      "description": "Does the code solve the problem correctly and handle edge cases?",
+      "weight": 0.4,
+      "examples": {
+        "excellent": [
+          {
+            "input": "Write a function to reverse a string",
+            "output": "def reverse_string(s):\n    if not isinstance(s, str):\n        raise TypeError('Input must be a string')\n    return s[::-1]",
+            "score": 9.5,
+            "explanation": "Correct implementation with type checking and edge case handling"
+          }
+        ],
+        "good": [
+          {
+            "input": "Write a function to reverse a string",
+            "output": "def reverse_string(s):\n    return s[::-1]",
+            "score": 7.0,
+            "explanation": "Correct but lacks input validation"
+          }
+        ],
+        "poor": [
+          {
+            "input": "Write a function to reverse a string",
+            "output": "def reverse_string(s):\n    result = ''\n    for i in range(len(s)):\n        result = s[i] + result\n    return result",
+            "score": 4.0,
+            "explanation": "Works but inefficient and overly complex"
+          }
+        ]
+      }
+    },
+    {
+      "name": "readability",
+      "description": "Is the code clean, well-named, and easy to understand?",
+      "weight": 0.3,
+      "subcriteria": [
+        {
+          "name": "naming",
+          "description": "Variable and function names are descriptive"
+        },
+        {
+          "name": "structure",
+          "description": "Code is well-organized and formatted"
+        }
+      ]
+    },
+    {
+      "name": "efficiency",
+      "description": "Is the solution computationally efficient?",
+      "weight": 0.3
+    }
+  ],
+  "metadata": {
+    "author": "OpenRubricRL Team",
+    "created_at": "2024-01-01T00:00:00Z",
+    "tags": ["python", "code-quality", "basic"],
+    "license": "MIT"
+  }
+}

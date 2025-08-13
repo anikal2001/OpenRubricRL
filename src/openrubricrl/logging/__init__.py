@@ -1,0 +1,1 @@
+"""Logging and result storage for OpenRubricRL."""

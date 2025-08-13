@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenRubricRL Rubric Schema",
+  "description": "Schema for defining rubrics that can be converted into LLM-based reward functions",
+  "type": "object",
+  "required": ["name", "version", "criteria"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique identifier for the rubric"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the rubric"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what this rubric evaluates"
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["code", "dialogue", "creative_writing", "reasoning", "general"],
+      "description": "Domain this rubric is designed for"
+    },
+    "scale": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": {
+        "min": {
+          "type": "number",
+          "description": "Minimum score value"
+        },
+        "max": {
+          "type": "number",
+          "description": "Maximum score value"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["continuous", "discrete"],
+          "default": "continuous",
+          "description": "Whether scores are continuous or discrete"
+        }
+      }
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "weight"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the criterion"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of what this criterion measures"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Weight of this criterion (must sum to 1.0 across all criteria)"
+          },
+          "examples": {
+            "type": "object",
+            "properties": {
+              "excellent": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["input", "output", "score", "explanation"],
+                  "properties": {
+                    "input": {
+                      "type": "string",
+                      "description": "Task input"
+                    },
+                    "output": {
+                      "type": "string",
+                      "description": "Model output being scored"
+                    },
+                    "score": {
+                      "type": "number",
+                      "description": "Score for this criterion"
+                    },
+                    "explanation": {
+                      "type": "string",
+                      "description": "Why this example received this score"
+                    }
+                  }
+                }
+              },
+              "good": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/properties/criteria/items/properties/examples/properties/excellent/items"
+                }
+              },
+              "poor": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/properties/criteria/items/properties/examples/properties/excellent/items"
+                }
+              }
+            }
+          },
+          "subcriteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "description"],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "hybrid_metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "weight"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the automated metric"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["bleu", "rouge", "accuracy", "perplexity", "custom"],
+            "description": "Type of automated metric"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Weight in final score combination"
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration specific to the metric type"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "license": {
+          "type": "string",
+          "default": "MIT"
+        }
+      }
+    }
+  }
+}
