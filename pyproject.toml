@@ -9,7 +9,7 @@ description = "Open-source pipeline that converts human-written rubrics into LLM
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "OpenRubricRL Team", email = "team@openrubricrl.org"}
+    {name = "OpenRubricRL Team", email = "anikal2001@gmail.com"}
 ]
 keywords = ["rlhf", "reinforcement-learning", "llm", "reward-function", "rubric"]
 classifiers = [
