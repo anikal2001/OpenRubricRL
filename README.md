@@ -250,6 +250,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 **🔗 Links:**
 - [GitHub Repository](https://github.com/openrubricrl/openrubricrl)
-- [Documentation](https://openrubricrl.readthedocs.io)
+- [Documentation](https://github.com/anikal2001/OpenRubricRL/tree/main/docs)
 - [PyPI Package](https://pypi.org/project/openrubricrl/)
-- [Discord Community](https://discord.gg/openrubricrl)

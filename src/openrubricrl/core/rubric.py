@@ -37,13 +37,13 @@ class Scale(BaseModel):
     """Scoring scale definition."""
     min: float
     max: float
-    type: str = Field(default="continuous", regex="^(continuous|discrete)$")
+    type: str = Field(default="continuous", pattern="^(continuous|discrete)$")
 
 
 class HybridMetric(BaseModel):
     """Automated metric to combine with LLM scoring."""
     name: str
-    type: str = Field(..., regex="^(bleu|rouge|accuracy|perplexity|custom)$")
+    type: str = Field(..., pattern="^(bleu|rouge|accuracy|perplexity|custom)$")
     weight: float = Field(..., ge=0, le=1)
     config: Optional[Dict[str, Any]] = None
 
@@ -60,9 +60,9 @@ class Metadata(BaseModel):
 class Rubric(BaseModel):
     """Main rubric class."""
     name: str
-    version: str = Field(..., regex=r"^\d+\.\d+\.\d+$")
+    version: str = Field(..., pattern=r"^\d+\.\d+\.\d+$")
     description: Optional[str] = None
-    domain: Optional[str] = Field(None, regex="^(code|dialogue|creative_writing|reasoning|general)$")
+    domain: Optional[str] = Field(None, pattern="^(code|dialogue|creative_writing|reasoning|general)$")
     scale: Scale
     criteria: List[Criterion] = Field(..., min_items=1)
     hybrid_metrics: Optional[List[HybridMetric]] = None

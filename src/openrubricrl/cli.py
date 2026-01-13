@@ -15,9 +15,11 @@ from .core.scorer import create_openai_scorer, create_anthropic_scorer
 
 @click.group()
 @click.version_option()
-def main():
+@click.option('--debug', is_flag=True, help='Enable debug logging')
+def main(debug: bool):
     """OpenRubricRL - Convert rubrics into LLM-based reward functions."""
-    pass
+    if debug:
+        click.echo("Debug mode enabled")
 
 
 @main.command()
@@ -56,6 +58,7 @@ def validate(rubric_file: str, validate_only: bool, output_format: str):
 @click.option('--max-examples', type=int, default=2, help='Max examples per criterion')
 @click.option('--output-format', type=click.Choice(['json', 'table']), default='table', help='Output format')
 @click.option('--save-prompt', type=click.Path(), help='Save the generated prompt to file')
+@click.option('--debug', is_flag=True, help='Enable debug logging')
 def score(
     rubric_file: str,
     task_input: str,
